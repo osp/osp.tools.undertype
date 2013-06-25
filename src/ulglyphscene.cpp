@@ -44,11 +44,15 @@ ULGlyphScene::ULGlyphScene()
 	keyHelper->setDefaultTextColor ( Qt::red );
 	spaceDiv = 0.0;
 
+    controlMod = false;
+    metaMod = false;
+/*
     pasteAct = new QAction(QIcon(":/images/paste.png"), tr("&Paste"), this);
     pasteAct->setShortcuts(QKeySequence::Paste);
     pasteAct->setStatusTip(tr("Paste the clipboard's contents into the current "
                               "selection"));
     connect(pasteAct, SIGNAL(triggered()), this, SLOT(paste()));
+    */
 
 }
 
@@ -124,6 +128,18 @@ void ULGlyphScene::focusOutEvent ( QFocusEvent * event )
 
 void ULGlyphScene::keyPressEvent ( QKeyEvent * event )
 {
+    int key(event->key());
+    Qt::KeyboardModifiers mods = event->modifiers();
+
+    qDebug(QString("key[%1]\tcontrol[%2]\tmeta[%3]").arg(key).arg(controlMod).arg(metaMod).toAscii());
+
+    if (event->key() == Qt::Key_V
+         && (controlMod || metaMod))
+    {
+        paste();
+        return;
+    }
+
 	if ( event->key() == Qt::Key_Backspace)
 	{
 		m_mainscene->removeLast();
@@ -140,8 +156,13 @@ void ULGlyphScene::keyPressEvent ( QKeyEvent * event )
 	{
 		keyPressEvent_byName(event);
 	}
+
+    QGraphicsScene::keyPressEvent(event);
 	
 	setFocus();
+
+    controlMod = mods.testFlag( Qt::ControlModifier );
+    metaMod = mods.testFlag(Qt::MetaModifier);
 }
 
 void ULGlyphScene::paste()

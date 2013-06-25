@@ -117,8 +117,7 @@ class undertype:public QMainWindow
 		QMenu *editMenu;
 		QMenu *helpMenu;
 		
-		QToolBar *fileToolBar;
-		QToolBar *editToolBar;
+        QToolBar *fileToolBar;
 		
 		QAction *newAct;
 		QAction *openAct;
@@ -130,9 +129,7 @@ class undertype:public QMainWindow
 		
 		QAction *pageAct;
 		QAction *pdfAct;
-		QAction *cutAct;
-		QAction *copyAct;
-		QAction *pasteAct;
+
 		
 		QAction *aboutAct;
 		QAction *aboutQtAct;

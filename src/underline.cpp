@@ -325,20 +325,7 @@ void undertype::createActions()
 	pdfAct = new QAction ( tr ( "Export to PDF..." ),this );
 	connect ( pdfAct, SIGNAL ( triggered() ),this, SLOT ( exportPDF() ) );
 
-	cutAct = new QAction ( QIcon ( ":/editcut.xpm" ), tr ( "Cu&t" ), this );
-	cutAct->setShortcut ( tr ( "Ctrl+X" ) );
-	cutAct->setStatusTip ( tr ( "Cut the current selection's contents to the "
-	                            "clipboard" ) );
 
-	copyAct = new QAction ( QIcon ( ":/editcopy.xpm" ), tr ( "&Copy" ), this );
-	copyAct->setShortcut ( tr ( "Ctrl+C" ) );
-	copyAct->setStatusTip ( tr ( "Copy the current selection's contents to the "
-	                             "clipboard" ) );
-
-	pasteAct = new QAction ( QIcon ( ":/editpaste.xpm" ), tr ( "&Paste" ), this );
-	pasteAct->setShortcut ( tr ( "Ctrl+V" ) );
-	pasteAct->setStatusTip ( tr ( "Paste the clipboard's contents into the current "
-	                              "selection" ) );
 
 	aboutAct = new QAction ( tr ( "&About" ), this );
 	aboutAct->setStatusTip ( tr ( "Show the application's About box" ) );
@@ -351,8 +338,6 @@ void undertype::createActions()
 	printAct = new QAction ( tr ( "&Print" ),this );
 	connect ( printAct, SIGNAL ( triggered() ), this, SLOT ( print() ) );
 
-	cutAct->setEnabled ( false );
-	copyAct->setEnabled ( false );
 }
 
 void undertype::createMenus()
@@ -390,10 +375,7 @@ void undertype::createToolBars()
 	fileToolBar->addAction ( openAct );
 	fileToolBar->addAction ( saveAct );
 
-	editToolBar = addToolBar ( tr ( "Edit" ) );
-	editToolBar->addAction ( cutAct );
-	editToolBar->addAction ( copyAct );
-	editToolBar->addAction ( pasteAct );
+
 }
 
 void undertype::createStatusBar()

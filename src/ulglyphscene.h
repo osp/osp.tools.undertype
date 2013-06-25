@@ -35,6 +35,8 @@ class QAction;
 */
 class ULGlyphScene : public QGraphicsScene
 {
+    Q_OBJECT
+
 public:
     ULGlyphScene();
 
@@ -55,9 +57,12 @@ public:
 		bool keyHelpIsActive;
 		QStringList keyHelpList;
 		double spaceDiv;
+
+        bool controlMod;
+        bool metaMod;
+
 		void keyPressEvent_byName ( QKeyEvent * event );
-		void keyPressEvent_byChar ( QKeyEvent * event );
-        void paste();
+        void keyPressEvent_byChar ( QKeyEvent * event );
         void insertChar(ushort unicode);
 	protected:
 		void focusInEvent ( QFocusEvent * event );
@@ -65,6 +70,9 @@ public:
 		void keyPressEvent ( QKeyEvent * event );
 		void mousePressEvent( QGraphicsSceneMouseEvent * mouseEvent );
 // 		virtual void mouseMoveEvent ( QGraphicsSceneMouseEvent * mouseEvent );
+
+public slots:
+        void paste();
 };
 
 #endif
