@@ -359,7 +359,7 @@ void ULLineEditor::keyPressEvent ( QKeyEvent * event )
 	}
 	else
 	{
-		if ( event->key() == Qt::Key_Delete )
+        if ( (event->key() == Qt::Key_Delete) || (event->key() == Qt::Key_Backslash) )
 		{
 			for ( uint i = 0; i < it.count();++i )
 			{
