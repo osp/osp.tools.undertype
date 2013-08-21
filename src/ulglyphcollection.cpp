@@ -211,17 +211,18 @@ void ULGlyphCollection::userFeed ( QString fpath, QString fname, QMap<uint,QStri
 	for ( uint index = 0; index < keylist.count() ;++index )
 	{
 // 		qDebug() << index << "  :  " << keylist[index];
+        uint faceIndex = keylist[index];
 		tmpitem = new ULGlyphItem();
-		if ( tmpitem->fromOutline ( face, keylist[index] , sz ) )
+        if ( tmpitem->fromOutline ( face, faceIndex , sz ) )
 		{
-			tmpitem->charcode = reversedCMap[index];
+            tmpitem->charcode = reversedCMap[faceIndex];
 			cMap[tmpitem->charcode] = size();
 			append ( tmpitem );
 			m_scene->addItem ( last() );
 			last()->collection = this;
-			last()->index =  keylist[index];
+            last()->index =  faceIndex;
             // tmpitem->attachKey ( QString("<div style=\"background-color:white\">%1</div>").arg(glyames[keylist[index]]) );
-            tmpitem->attachKey(glyames[keylist[index]]);
+            tmpitem->attachKey(glyames[faceIndex]);
 // 			qDebug() << last()->XObject();
 		}
 		else
